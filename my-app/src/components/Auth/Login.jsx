@@ -1,0 +1,30 @@
+import React from 'react'
+import { useState } from 'react'
+const Login = () => {
+    const [email,setEmail] =useState('')
+
+    const [password, setPassword] = useState('')
+
+    const submitHandler= (e) => {
+        e.preventDefault()
+        console.log("email is" , email)
+        console.log("password is ", password)
+    }
+  return (
+    <div className='flex h-screen w-screen items-center justify-center'>
+        <div className='border-2 border-emerald-600 p-20'>
+      
+      <form onSubmit={(e)=>{
+        submitHandler(e)
+      }} className='flex flex-col  items-center justify-center'>  
+
+    <input value={email} onChange={(e)=>{setEmail(e.target.value)}} required className="border-2 border-emerald-600 rounded-full py-3 px-5 text-xl text-white outline-none bg-transparent placeholder:text-grey-400" type='email' placeholder='Enter Email'></input>
+
+    <input value={password} onChange={(e)=>{setPassword(e.target.value)}} required className="border-2 border-emerald-600 rounded-full py-3 px-5 text-xl mt-3 text-white outline-none bg-transparent placeholder:text-grey-400" type="password" placeholder='Enter Password'/>
+
+    <button  className=" bg-emerald-600 rounded-full py-3 px-5 text-xl text-white outline-none placeholder:text-white mt-5">Log-in</button>
+      </form>
+    </div></div>
+  )
+}
+export default Login
