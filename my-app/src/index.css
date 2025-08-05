@@ -6,7 +6,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: gilroy;
   color:#fff
 }
 
@@ -18,3 +17,9 @@ html,body {
 body {
   background-color: #111;
 }
+
+#tasklist::-webkit-scrollbar{
+
+  display: none;
+}
+
