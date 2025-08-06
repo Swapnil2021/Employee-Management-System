@@ -6,22 +6,24 @@ import { useState } from 'react'
 const App = () => {
   
   const [user, setUser] = useState("")
-  const handleLogin = (email,password)=> {
-    if (email=='admin@me.com' && password=='123') {
-    console.log("whis is admin");
-  }else if(email=='user@me.com' && password=='123') {
-    console.log("this is user")
+
+  const handleLogin = (email,password)=>{
+    if (email=='admin@me.com' && password=='123'){
+      setUser('admin')
+      console.log(user)
+  }else if(email=='user@me.com' && password=='123'){
+      setUser('employee')
+      console.log(user)
   }
-  
-  
   else{
     alert("Invalid credentials");
   }
   }
-  handleLogin('admin@me.com',123)
+
   return (
       <>
       {!user ? <Login handleLogin={handleLogin}/>: ''}
+      {user =='admin' ? <AdminDashboard /> : <EmployeeDashboard />}
       {/* <Login /> */}
       {/* <EmployeeDashboard></EmployeeDashboard> */}
       {/* <AdminDashboard></AdminDashboard> */}
