@@ -2,14 +2,14 @@ import React from 'react'
 import Header from '../Other/Header'
 import TaskListNumbers from '../Other/TaskListNumbers'
 import TaskList from '@/TaskList/TaskList'
-const EmployeeDashboard = () => {
+const EmployeeDashboard = ({data}) => {
+
   return (
     <div className='p-10 bg-[#1C1C1C] h-screen '>
-      
-    <Header></Header>
-    <TaskListNumbers></TaskListNumbers>
-    <TaskList></TaskList>
-      
+     
+    <Header data={data}></Header>
+    <TaskListNumbers data={data}></TaskListNumbers>
+    <TaskList data={data}></TaskList>
     </div>
   )
 }
