@@ -5,6 +5,7 @@ import { setLocalStorage } from '../utils/localStorage.jsx';
 
 const AuthProvider = ({children}) => {
   const [userData, setUserData] = useState(null)
+ 
   useEffect(() => {
         const {employees, admin} = getLocalStorage();
         setUserData({employees, admin});

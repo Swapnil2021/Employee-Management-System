@@ -9,7 +9,6 @@ const AdminDashboard = () => {
       <Header></Header>
         <CreateTask></CreateTask>
         <AllTask></AllTask>
-    
     </div>
   )
 }
