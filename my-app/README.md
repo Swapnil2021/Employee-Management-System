@@ -70,7 +70,7 @@ cd Employee-Management-System
 npm install
 
 # Start the development server
-npm start
+npm run dev
 
 # 🔙 Return to Table of Contents:
 # https://github.com/swapnil2201/Employee-Management-System#table-of-contents
