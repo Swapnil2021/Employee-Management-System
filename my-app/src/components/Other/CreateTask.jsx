@@ -1,34 +1,81 @@
-import React from 'react'
+import AuthProvider, { AuthContext } from '@/context/AuthProvider'
+import { Description } from '@radix-ui/react-dialog'
+import React, {useState,useContext}from 'react'
 
 const CreateTask = () => {
+
+const [userData,setUserData] = useContext(AuthContext)
+
+const [tasktitle, setTaskTitle] = useState('')
+const [description, setDescription] = useState('')
+const [taskDate, setTaskDate] = useState('')
+const [assignTo, setAssignTo] = useState('')
+const [category, setCategory] = useState('')
+
+const [newTask, setNewTask] = useState({})
+
+const submitHandler = (e)=>{
+  e.preventDefault()
+  setNewTask({tasktitle,description,taskDate,category,active:false,newTask:true,failed:false,completed:false})
+
+
+const data = userData
+
+  data.forEach(function (elem) {
+  if(assignTo == elem.firstName){
+    elem.tasks.push(newTask)
+    elem.taskNumbers.newTask=elem.taskNumbers.newTask+1
+    
+  }
+  }) 
+setUserData(data)
+console.log(data)
+setTaskTitle('')
+setAssignTo('')
+setCategory('')
+setTaskDate('')
+setDescription('')
+  }
+
   return (
 
         <div className='p-5 bg-[#1C1C1C] mt-5 rounded'>
-          <form className='flex item-start w-full flex-wrap justify-between'>
+          <form onSubmit={(e)=>{
+            submitHandler(e)
+          }} className='flex item-start w-full flex-wrap justify-between'>
 
             <div className='w-1/2 '>
 
               <h3 className='text-sm text-gray-300 mb-0.5'>Task Title</h3> 
-              <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='Make ui Design' />
+              <input value={tasktitle} onChange={(e)=>{
+                setTaskTitle(e.target.value)
+              }} className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='Make ui Design' />
              
               <h3 className='text-sm text-gray-300 mb-0.5' >Date</h3>
-              <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="date" name="" id="" />
+              <input value={taskDate} onChange={(e)=>{
+                setTaskDate(e.target.value)
+              }} className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="date" name="" id="" />
          
               <h3 className='text-sm text-gray-300 mb-0.5'>Assign to </h3>
-              <input className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='employee name' />
+              <input value={assignTo} onChange={(e)=>{
+                setAssignTo(e.target.value)
+              }} className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='employee name' />
            
                <h3 className='text-sm text-gray-300 mb-0.5'>Category</h3>
-              <input type="text" placeholder='Design or dev' />
+              <input value={category} onChange={(e)=>{
+                setCategory(e.target.value)
+              }}  className='text-sm py-1 px-2 w-4/5 rounded outline-none bg-transparent border-[1px] border-gray-400 mb-4' type="text" placeholder='Design or dev' />
               </div>
 
                <div className='w-1/2 flex-col item-start'>
               <h3 className='text-sm text-gray-300 mb-0.5'>Description</h3>
-              <textarea className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 ' name="" id="" cols="30" rows="10"></textarea>
+              <textarea value={description} onChange={(e)=>{
+                setDescription(e.target.value)
+              }} className='w-full h-44 text-sm py-2 px-4 rounded outline-none bg-transparent border-[1px] border-gray-400 ' name="" id="" cols="30" rows="10"></textarea>
               <button className='bg-emerald-500 py-3 hover:bg-emerald-600 px-5 rounded text-sm mt-4 w-full'> Create Task</button>
               </div>
               
           </form>
-
       </div>
   
   )
